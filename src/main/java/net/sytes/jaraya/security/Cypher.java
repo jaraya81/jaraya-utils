@@ -13,10 +13,8 @@ public class Cypher {
 
         Cipher cipher;
         try {
-            cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        } catch (NoSuchAlgorithmException e) {
-            throw new UtilException(e);
-        } catch (NoSuchPaddingException e) {
+            cipher = Cipher.getInstance("AES/GCM/NoPadding");
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
             throw new UtilException(e);
         }
         SecretKey secretKey = new SecretKeySpec(key, "AES");
@@ -27,9 +25,7 @@ public class Cypher {
         }
         try {
             return cipher.doFinal(message);
-        } catch (IllegalBlockSizeException e) {
-            throw new UtilException(e);
-        } catch (BadPaddingException e) {
+        } catch (IllegalBlockSizeException | BadPaddingException e) {
             throw new UtilException(e);
         }
     }
@@ -38,10 +34,8 @@ public class Cypher {
 
         Cipher cipher = null;
         try {
-            cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        } catch (NoSuchAlgorithmException e) {
-            throw new UtilException(e);
-        } catch (NoSuchPaddingException e) {
+            cipher = Cipher.getInstance("AES/GCM/NoPadding");
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
             throw new UtilException(e);
         }
         SecretKey secretKey = new SecretKeySpec(key, "AES");
@@ -52,9 +46,7 @@ public class Cypher {
         }
         try {
             return cipher.doFinal(encrypted);
-        } catch (IllegalBlockSizeException e) {
-            throw new UtilException(e);
-        } catch (BadPaddingException e) {
+        } catch (IllegalBlockSizeException | BadPaddingException e) {
             throw new UtilException(e);
         }
     }
